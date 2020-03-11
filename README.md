@@ -1,3 +1,6 @@
+※ これは自作アプリのために少しだけ挙動を変えたPolarisです.
+____________________________________________________________________________
+
 # Polaris
 
 [![Join the chat at https://gitter.im/PowerShell/Polaris](https://badges.gitter.im/PowerShell/Polaris.svg)](https://gitter.im/PowerShell/Polaris?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

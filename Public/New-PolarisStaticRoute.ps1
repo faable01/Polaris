@@ -63,6 +63,9 @@ function New-PolarisStaticRoute {
         $Polaris = $Script:Polaris
     )
 
+    # ---- MDwiki用にアレンジしたことをユーザに知らせる ----
+    Write-Host '[New-PolarisStaticRoute]をアレンジしています. (staticroute起動中、ファイル上書き禁止にならないように挙動を変更した)'
+
     $ErrorAction = $PSBoundParameters["ErrorAction"]
     If ( -not $ErrorAction ) {
         $ErrorAction = $ErrorActionPreference
@@ -117,9 +120,16 @@ function New-PolarisStaticRoute {
                 }
             }
             else {
-                $Response.SetStream(
-                    [System.IO.File]::OpenRead($RequestedItem.FullName)
+                # ---- MDwiki用に以下をコメントアウト（wiki起動中に上書き禁止にならないようにしたい） ----
+                # $Response.SetStream(
+                #     [System.IO.File]::OpenRead($RequestedItem.FullName)
+                # )
+
+                # ---- MDwiki用 ----
+                $Response.Send(
+                    ((Get-Content $RequestedItem.FullName -Encoding UTF8) -join "`n")
                 )
+
                 $Response.ContentType = [PolarisResponse]::GetContentType($RequestedItem.FullName)
             }
         }
